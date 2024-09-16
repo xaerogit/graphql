@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
     background-color:#ADBBDA;
-
 }
 .login-div {
     border: 3px solid;
@@ -14,4 +13,11 @@ body {
     width: 25%;
     text-align: center;
     color: white;
+}
+
+.graphql-greetings {
+    border: 3px solid;
+    background-color: #7091E6;
+    padding: 15px;
+    position: absolute;
 }
