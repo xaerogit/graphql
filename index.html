@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>GraphQL</title>
+    <link rel="icon" type="image/x-icon" href="static/images/graphQLico.png">
 </head>
 <body>
     <link rel="stylesheet" href="static/styles.css">
     <script src="static/graphql.js"></script>
+
+    <div class="login-div">
+        <a>Login to 01</a>
+        <div class="inner-div">
+            <label for="loginUsername">username / email:</label>
+            <input type="text" id="loginUsername" name="loginUsername" placeholder=""><br><br>
+            <label for="loginPassword">password:</label>
+            <input type="password" id="loginPassword" name="loginPassword" placeholder=""><br><br>
+        </div>
+        <p id="errorFlair" style="color: red;"></p>
+        <button type="button" id="loginButton">Login!</button><br>
+    </div>
 </body>
 </html>
