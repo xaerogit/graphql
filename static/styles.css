@@ -20,4 +20,29 @@ body {
     background-color: #7091E6;
     padding: 15px;
     position: absolute;
+    display: none;
+}
+
+.user-info {
+    border: 3px solid;
+    background-color: #7091E6;
+    padding: 15px;
+    position:fixed;
+    display: none;
+}
+
+.pie-chart {
+    border: 3px solid;
+    background-color: #7091E6;
+    padding: 15px;
+    position:fixed;
+    display: none;
+}
+
+.xp-graph {
+    border: 3px solid;
+    background-color: #7091E6;
+    padding: 15px;
+    position:fixed;
+    display: none;
 }
