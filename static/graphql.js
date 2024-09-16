@@ -6,3 +6,12 @@ const kjGraphQL = "https://01.kood.tech/api/graphql-engine/v1/graphql"
 
 const loginButton = document.getElementById('loginButton')
 const errorFlair = document.getElementById('errorFlair')
+const loginPage = document.getElementById('login-div')
+
+function getToken(){
+
+}
+
+function main(){
+    
+}
