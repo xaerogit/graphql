@@ -20,7 +20,6 @@ body {
     background-color: #7091E6;
     padding: 15px;
     position: absolute;
-    display: none;
 }
 
 .user-info {
@@ -28,7 +27,6 @@ body {
     background-color: #7091E6;
     padding: 15px;
     position:fixed;
-    display: none;
 }
 
 .pie-chart {
@@ -36,7 +34,6 @@ body {
     background-color: #7091E6;
     padding: 15px;
     position:fixed;
-    display: none;
 }
 
 .xp-graph {
@@ -44,5 +41,4 @@ body {
     background-color: #7091E6;
     padding: 15px;
     position:fixed;
-    display: none;
 }
