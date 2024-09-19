@@ -3,28 +3,68 @@ const kjSignInEndpoint = "https://01.kood.tech/api/auth/signin";
 const kjGraphQL = "https://01.kood.tech/api/graphql-engine/v1/graphql";
 
 // Main JS //
-const loginButton = document.getElementById('loginButton');
-const errorFlair = document.getElementById('errorFlair');
-const loginPage = document.getElementById('login-div');
-const logoutButton = document.getElementById('logoutButton');
-const loginUsername = document.getElementById('loginUsername');
+const saveToken = (token) => localStorage.setItem('jwt', token);
+const getToken = () => localStorage.getItem('jwt');
+const removeToken = () => localStorage.removeItem('jwt');
 
-loginButton.addEventListener("click"
+
+const login = async (username, password) => {
+  const credentials = btoa(`${username}:${password}`);
+  const response = await fetch(kjSignInEndpoint, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Basic ${credentials}`,
+      'Content-Type': 'application/json'
+    }
+  });
   
-)
-logoutButton.addEventListener("click"
+  if (!response.ok) {
+    throw new Error("Invalid credentials");
+  }
 
-)
+  const data = await response.json();
+  return data.jwt;  // JWT token
+};
 
-const testQuery = async(token)=> { `
-    query {
-        result {
-          id
-          user {
-            id
-            login
-          }
-        }
-      }
-      `
+
+const fetchGraphQL = async (query) => {
+  const jwt = getToken();
+  const response = await fetch(kjGraphQL, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${jwt}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ query })
+  });
+
+  const result = await response.json();
+  return result.data;
+};
+
+if (document.getElementById('loginForm')) {
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+    const errorMessage = document.getElementById('errorFlair');
+    
+    try {
+      const token = await login(username, password);
+      saveToken(token);
+      window.location.href = 'profile.html';  // Redirect to profile page
+    } catch (error) {
+      errorMessage.textContent = error.message;
+    }
+  });
 }
+
+if (document.getElementById('logoutButton')) {
+  document.getElementById('logoutButton').addEventListener('click', () => {
+    removeToken();
+    window.location.href = 'index.html';  // Redirect to login page
+  });
+}
+
+
