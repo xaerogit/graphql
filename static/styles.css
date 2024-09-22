@@ -1,44 +1,56 @@
+/*
+Color Codes:
+
+MAIN == #background-color: #444444
+AUX == #background: #797979
+
+ */
+
 body {
     font-family: Arial, sans-serif;
-    background-color:#ADBBDA;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #444444;
 }
-.login-div {
-    border: 3px solid;
-    background-color: #7091E6;
-    padding: 15px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 25%;
-    text-align: center;
-    color: white;
+.inner-div {
+    background: #797979;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(123, 123, 123, 0.1);
+    width: 400px;
 }
 
 .graphql-greetings {
+    display: flex;
     border: 3px solid;
-    background-color: #7091E6;
+    background-color: #797979;
     padding: 15px;
+    transform: translate(-50%, -50%);
     position: absolute;
+    left: 50%;
+    top: 50%;
 }
 
 .user-info {
-    border: 3px solid;
-    background-color: #7091E6;
+    display: flex;
+    border: 2px solid;
+    background-color: #797979;
     padding: 15px;
-    position:fixed;
 }
 
 .pie-chart {
-    border: 3px solid;
-    background-color: #7091E6;
+    border: 2px solid;
+    background-color: #797979;
     padding: 15px;
-    position:fixed;
+
 }
 
 .xp-graph {
-    border: 3px solid;
-    background-color: #7091E6;
+    border: 2px solid;
+    background-color: #797979;
     padding: 15px;
-    position:fixed;
 }
