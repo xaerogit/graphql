@@ -8,9 +8,9 @@
 </head>
 <body>
     <link rel="stylesheet" href="static/styles.css">
-    <div class="login-div">
+    <div id="loginDiv" class="login-div">
         <h1>Login to 01</h1>
-        <div class="inner-div">
+        <div class="login-inner-div">
             <form id="loginForm" accept-charset="utf-8">
                 <label for="loginUsername">username / email:</label>
                 <input type="text" id="loginUsername" name="loginUsername" placeholder="" required><br><br>
@@ -20,6 +20,21 @@
             </form>
         </div>
         <p id="errorFlair" style="color: red;"></p>
+    </div>
+
+    <div id="graphQlMain" class="graphql-main" style="display: none;">
+        <div class="logout-section">
+            <button type="submit" id="logoutButton">Log Out</button>
+        </div>
+        <div class="user-info">
+            <h1>User Info</h1>
+        </div>
+        <div class="pie-chart">
+            <h1>Skills Chart</h1>
+        </div>
+        <div class="xp-graph">
+            <h1>XP Graph</h1>
+        </div>
     </div>
     <script src="static/graphql.js"></script>
 </body>
