@@ -6,6 +6,8 @@ AUX == #background: #797979
 
  */
 
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -16,8 +18,15 @@ body {
     height: 100vh;
     background-color: #444444;
 }
+/* Got a bit lazy and just alligned it do the center like so.
+   Bit excessive but it works.
+*/
+.lolololol {
+    text-align: center;
+}
 
-.login-div {
+
+.login-div {  
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
