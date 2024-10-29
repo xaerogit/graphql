@@ -1,3 +1,8 @@
-# graphql
+# graph-ql
+## [Audit Instructions](https://github.com/01-edu/public/tree/master/subjects/graphql/audit)
 
-Created by: Märt
+## Live Webpage:
+### [Graph-Ql]()
+
+## Made by:
+- [@mpuusaag](https://01.kood.tech/git/mpuusaag)
