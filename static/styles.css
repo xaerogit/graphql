@@ -10,12 +10,20 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: block;
+    display: flexbox;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #444444;
 }
+
+.login-div {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+
 .login-inner-div {
     background: #797979;
     padding: 20px;
@@ -25,7 +33,7 @@ body {
 }
 
 .graphql-main {
-    display: flex;
+    display: flexbox;
     border: 3px solid;
     background-color: #797979;
     padding: 15px;
@@ -36,7 +44,7 @@ body {
 }
 
 .user-info {
-    display: flex;
+    display: flexbox;
     border: 2px solid;
     background-color: #797979;
     padding: 15px;
