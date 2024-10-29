@@ -26,20 +26,18 @@ const login = async (username, password) => {
 };
 
 
-const fetchGraphQL = async (query) => {
-  const jwt = getToken();
-  const response = await fetch(kjGraphQL, {
+function fetchQuery(query) {
+  return fetch(kjGraphQL, {
     method: "POST",
     headers: {
       "Authorization": `Bearer ${jwt}`,
       "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ query })
-  });
-
-  const result = await response.json();
-  return result.data;
-};
+      },
+    body: JSON.stringify({
+      query: query
+    })
+  }).then(res => res.json())
+}
 
 if (document.getElementById("loginForm")) {
   document.getElementById("loginForm").addEventListener("submit", async (e) => {
