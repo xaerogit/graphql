@@ -3,15 +3,20 @@ const kjSignInEndpoint = "https://01.kood.tech/api/auth/signin";
 const kjGraphQL = "https://01.kood.tech/api/graphql-engine/v1/graphql";
 
 // Main JS //
+const removeToken = () => localStorage.removeItem("jwt");
 const saveToken = (token) => {
-  localStorage.setItem("jwt", token);
-  console.debug("Token saved:", token);
+  if (token) {
+    localStorage.setItem("jwt", token);
+    console.debug("Token saved to localStorage:");  // Confirm it was saved
+  } else {
+    console.error("No token provided to saveToken");
+  }
 }
-const getToken = () => {
+const getToken = (token) => {
   localStorage.getItem("jwt");
   console.debug("Retrieved token:", token)
+  return token
 }
-const removeToken = () => localStorage.removeItem("jwt");
 const loginDiv = document.getElementById("loginDiv")
 
 const login = async (username, password) => {
@@ -23,6 +28,7 @@ const login = async (username, password) => {
       "Content-Type": "application/json"
     }
   });
+  console.debug(response)
   
   if (!response.ok) {
     throw new Error("Invalid credentials");
@@ -34,20 +40,23 @@ const login = async (username, password) => {
 }
 
 function fetchQuery(query) {
+  const token = getToken();
+  console.log("Token in fetchQuery:", token);
   return fetch(kjGraphQL, {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${getToken()}`, // Ensure token is provided
+      "Authorization": `Bearer ${token}`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify({ query: query })
   })
   .then(res => {
-    console.log("Fetch response status:", res.status);
+    // console.debug("Fetch response status:", res.status);
     return res.json();
   })
   .then(data => {
-    console.log("Data received from fetchQuery:", data); // Log received data
+    console.debug("Data received from fetchQuery:", data);
+    saveToken(token)
     return data;
   })
   .catch(error => {
@@ -94,18 +103,19 @@ if (document.getElementById("loginForm")) {
 
     const username = document.getElementById("loginUsername").value;
     const password = document.getElementById("loginPassword").value;
-    const errorMessage = document.getElementById("errorFlair");
     
     try {
       const token = await login(username, password);
       saveToken(token);
-      console.debug("Login Success")
+      document.getElementById("loginUsername").value = ""
+      document.getElementById("loginPassword").value = ""
+      // console.debug("Login Success")
       console.debug(getToken()) 
       loginDiv.style.display = "none"
-      const graphQlMain = document.getElementById("graphQlMain")
-      graphQlMain.style.display = "block"
+      document.getElementById("graphQlMain").style.display = "block"
+      getQuery()
     } catch (error) {
-      errorMessage.textContent = error.message;
+      document.getElementById("errorFlair").textContent = error.message;
     }
   });
 }
