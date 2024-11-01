@@ -35,6 +35,7 @@ const login = async (username, password) => {
         saveToken(jwtToken)
         getQuery(jwtToken)
         console.debug('== Getting Query ==')
+        userInfo(data)
     }
  })
 }
@@ -65,17 +66,38 @@ function getQuery() {
   fetchQuery(`
     {
     user {
-      id
-      createdAt
       firstName
+      lastName
+      login
+      email
+      createdAt
       auditRatio
     }
   }`).then(data => {
-      console.log("GraphQL Query Result:", data); // Log the final result
+      console.debug("GraphQL Query Result:", data); // Log the final result
     }).catch(error => {
       console.error("Error in getQuery:", error);
     });
 }
+
+const userInfo = (data) => {
+  const userData = data.user[0]
+  document.getElementById("userInfo").innerHTML = `
+    <p>Full Name: ${userData.firstName} ${userData.lastName}</p>
+    <p>Gitea Username: ${userData.login}</p>
+    <p>E-mail: ${userData.email}</div>
+    <p>Audit Ratio: ${userData.auditRatio}</p>
+    <p>Account Created: ${userData.createdAt}</p>
+    `;
+}
+
+// const skillsInfo = (data) => {
+  // const skillsData = data.skills[0]
+// }
+
+// const xpInfo = (data) => {
+  
+// }
 
 if (document.getElementById("loginForm")) {
   document.getElementById("loginForm").addEventListener("submit", async (e) => {
