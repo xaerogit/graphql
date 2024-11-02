@@ -75,14 +75,14 @@ const getUserQuery = () => {
     }
   }`).then(data => {
       console.debug("GraphQL Query Result:", data); // Log the final result
-      // const userData = data.user[0]
+      const userData = data.data.user[0]
       if(document.getElementById("userInfo")) {
         document.getElementById("userInfo").innerHTML = `
-        <p>Full Name: ${data.firstName} ${data.lastName}</p>
-        <p>Gitea Username: ${data.login}</p>
-        <p>E-mail: ${data.email}</div>
-        <p>Audit Ratio: ${data.auditRatio}</p>
-        <p>Account Created: ${data.createdAt}</p>
+        <p>Full Name: ${userData.firstName} ${userData.lastName}</p>
+        <p>Gitea Username: ${userData.login}</p>
+        <p>E-mail: ${userData.email}</div>
+        <p>Audit Ratio: ${userData.auditRatio.toFixed(2)}</p>
+        <p>Account Created: ${userData.createdAt}</p>
         `;
       }
       
@@ -110,7 +110,7 @@ if (document.getElementById("loginForm")) {
       const token = await login(username, password);
       document.getElementById("loginUsername").value = ""
       document.getElementById("loginPassword").value = ""
-      console.debug(getToken()) 
+      // console.debug(getToken()) 
       loginDiv.style.display = "none"
       document.getElementById("graphQlMain").style.display = "inline-block"
     } catch (error) {
