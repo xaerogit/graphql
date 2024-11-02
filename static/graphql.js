@@ -33,9 +33,8 @@ const login = async (username, password) => {
     if (data){
         const jwtToken = data;
         saveToken(jwtToken)
-        getQuery(jwtToken)
+        getUserQuery(jwtToken)
         console.debug('== Getting Query ==')
-        userInfo(data)
     }
  })
 }
@@ -55,6 +54,7 @@ function fetchQuery(query) {
   })
   .then(data => {
     console.debug("Data received from fetchQuery:", data);
+    // userInfo(data)
     return data;
   })
   .catch(error => {
@@ -62,7 +62,7 @@ function fetchQuery(query) {
   });
 }
 
-function getQuery() {
+const getUserQuery = () => {
   fetchQuery(`
     {
     user {
@@ -75,20 +75,20 @@ function getQuery() {
     }
   }`).then(data => {
       console.debug("GraphQL Query Result:", data); // Log the final result
+      // const userData = data.user[0]
+      if(document.getElementById("userInfo")) {
+        document.getElementById("userInfo").innerHTML = `
+        <p>Full Name: ${data.firstName} ${data.lastName}</p>
+        <p>Gitea Username: ${data.login}</p>
+        <p>E-mail: ${data.email}</div>
+        <p>Audit Ratio: ${data.auditRatio}</p>
+        <p>Account Created: ${data.createdAt}</p>
+        `;
+      }
+      
     }).catch(error => {
       console.error("Error in getQuery:", error);
     });
-}
-
-const userInfo = (data) => {
-  const userData = data.user[0]
-  document.getElementById("userInfo").innerHTML = `
-    <p>Full Name: ${userData.firstName} ${userData.lastName}</p>
-    <p>Gitea Username: ${userData.login}</p>
-    <p>E-mail: ${userData.email}</div>
-    <p>Audit Ratio: ${userData.auditRatio}</p>
-    <p>Account Created: ${userData.createdAt}</p>
-    `;
 }
 
 // const skillsInfo = (data) => {
@@ -112,7 +112,7 @@ if (document.getElementById("loginForm")) {
       document.getElementById("loginPassword").value = ""
       console.debug(getToken()) 
       loginDiv.style.display = "none"
-      document.getElementById("graphQlMain").style.display = "block"
+      document.getElementById("graphQlMain").style.display = "inline-block"
     } catch (error) {
       document.getElementById("errorFlair").textContent = error.message;
     }
