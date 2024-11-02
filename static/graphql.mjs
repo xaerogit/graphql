@@ -44,28 +44,6 @@ const login = async (username, password) => {
   })
 }
 
-// function fetchQuery(query) {
-//   return fetch(kjGraphQL, {
-//     method: "POST",
-//     headers: {
-//       "Authorization": `Bearer ${getToken()}`,
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify({ query: query })
-//   })
-//   .then(res => {
-//     console.debug("Fetch response status:", res.status);
-//     return res.json();
-//   })
-//   .then(data => {
-//     console.debug("Data received from fetchQuery:", data);
-//     return data;
-//   })
-//   .catch(error => {
-//     console.error("Error in fetchQuery:", error);
-//   });
-// }
-
 function getUserQuery() {
   fetchQuery(`
     {
