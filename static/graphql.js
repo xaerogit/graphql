@@ -19,24 +19,26 @@ const getToken = () => {
 
 const login = async (username, password) => {
   const credentials = btoa(`${username}:${password}`);
-  const response = await fetch(kjSignInEndpoint, {
+  return fetch(kjSignInEndpoint, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Basic ${credentials}`
+      "Authorization": `Basic ${credentials}`,
+      "Content-Type": "application/json"
     }
   })
   .then(response => {
-    return response.json();
- })
- .then(data => {
-    if (data){
-        const jwtToken = data;
-        saveToken(jwtToken)
-        getUserQuery(jwtToken)
-        console.debug('== Getting Query ==')
+    return response.json()
+  })
+  .then(data => {
+    if(data){
+      const jwtToken = data
+      saveToken(jwtToken)
+      getUserQuery(jwtToken)
     }
- })
+  })
+  .catch(error => {
+    console.error(error)
+  })
 }
 
 function fetchQuery(query) {
@@ -54,7 +56,6 @@ function fetchQuery(query) {
   })
   .then(data => {
     console.debug("Data received from fetchQuery:", data);
-    // userInfo(data)
     return data;
   })
   .catch(error => {
