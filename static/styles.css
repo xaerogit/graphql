@@ -4,9 +4,7 @@ Color Codes:
 MAIN == #background-color: #444444
 AUX == #background: #797979
 
- */
-
-
+*/
 
 body {
     font-family: Arial, sans-serif;
@@ -24,7 +22,6 @@ body {
 .lolololol {
     text-align: center;
 }
-
 
 .login-div {  
     display: block;
@@ -54,13 +51,14 @@ body {
 }
 
 .user-info {
-    display: flexbox;
+    display: inline-block;
     border: 2px solid;
     background-color: #797979;
     padding: 15px;
 }
 
 .pie-chart {
+    display: inline-block;
     border: 2px solid;
     background-color: #797979;
     padding: 15px;
@@ -68,6 +66,7 @@ body {
 }
 
 .xp-graph {
+    display: inline-block;
     border: 2px solid;
     background-color: #797979;
     padding: 15px;
