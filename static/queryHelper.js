@@ -1,6 +1,5 @@
 import { getToken } from "./graphql.mjs";
 // This file only serves to fetch the queries.
-// :)
 export function fetchQuery(query) {
   const kjGraphQL = "https://01.kood.tech/api/graphql-engine/v1/graphql";
   return fetch(kjGraphQL, {
