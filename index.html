@@ -4,11 +4,11 @@
     <title>GraphQL</title>
     <!-- FIXME: !!! Add a proper favicon !!! -->
     <link rel="icon" type="image/x-icon" href="static/images/graphQLico.png"> 
+    <link rel="stylesheet" href="static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- favicon is a placeholder! -->
 </head>
 <body>
-    <link rel="stylesheet" href="static/styles.css">
     <div id="loginDiv" class="login-div">
         <h1 class="lolololol">Login to 01</h1>
         <div class="login-inner-div">
@@ -23,22 +23,16 @@
         <p id="errorFlair" style="color: red;"></p>
     </div>
 
-    <div id="graphQlMain" class="graphql-main" style="display: none;">
+    <div id="graphQlMain" class="graphql-main-container" style="display: none;">
         <div class="logout-section">
             <button type="submit" id="logoutButton">Log Out</button>
         </div>
-        <div class="user-info">
-            <h1>User Info</h1>
-            <div id="userInfo"></div>
-        </div>
-        <div class="pie-chart">
-            <h1>Skills Chart</h1>
-            <div id="skillsChart"></div>
-        </div>
-        <div class="xp-graph">
-            <h1>XP Graph</h1>
-            <div id="xpGraph"></div>
-        </div>
+        <h1>User Info</h1>
+        <div class="user-info" id="userInfo"></div>
+        <h1>Skills Chart</h1>
+        <div class="skills-chart" id="skillsChart"></div>
+        <h1>XP Graph</h1>
+        <div class="xp-graph" id="xpGraph"></div>
         <p id="errorFlair" style="color: red;"></p>
     </div>
     <script type="module" src="static/graphql.mjs"></script>

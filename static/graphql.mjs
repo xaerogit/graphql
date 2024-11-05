@@ -32,8 +32,10 @@ const login = async (username, password) => {
           document.getElementById("errorFlair").textContent = Error;
         }
     }
-    loginDiv.style.display = "none"
-    document.getElementById("graphQlMain").style.display = "inline-block"
+    if(response.ok){
+      loginDiv.style.display = "none"
+      document.getElementById("graphQlMain").style.display = "inline-block"
+    }
     return response.json();
  })
   .then(data => {
@@ -69,7 +71,7 @@ function getUserQuery() {
       document.getElementById("userInfo").innerHTML = `
       <p>Full Name: ${userData.firstName} ${userData.lastName}</p>
       <p>Gitea Username: ${userData.login}</p>
-      <p>E-mail: ${userData.email}</div>
+      <p>E-mail: ${userData.email}</p>
       <p>Audit Ratio: ${userData.auditRatio.toFixed(2)}</p>
       <p>Account Created: ${userData.createdAt}</p>
       `;

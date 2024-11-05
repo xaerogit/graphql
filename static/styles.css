@@ -24,7 +24,7 @@ body {
 }
 
 .login-div {  
-    display: block;
+    display: flexbox;
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
@@ -34,40 +34,19 @@ body {
 .login-inner-div {
     background: #797979;
     padding: 20px;
+    position: relative;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(123, 123, 123, 0.1);
-    width: 400px;
+    width: auto;
 }
 
-.graphql-main {
-    display: flexbox;
+.graphql-main-container {
+    display: inline-block;
     border: 3px solid;
     background-color: #797979;
     padding: 15px;
     transform: translate(-50%, -50%);
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%;
-}
-
-.user-info {
-    display: inline-block;
-    border: 2px solid;
-    background-color: #797979;
-    padding: 15px;
-}
-
-.pie-chart {
-    display: inline-block;
-    border: 2px solid;
-    background-color: #797979;
-    padding: 15px;
-
-}
-
-.xp-graph {
-    display: inline-block;
-    border: 2px solid;
-    background-color: #797979;
-    padding: 15px;
 }
