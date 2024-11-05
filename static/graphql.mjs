@@ -1,5 +1,4 @@
 import { fetchQuery } from "./queryHelper.js";
-
 // API Endpoints //
 const kjSignInEndpoint = "https://01.kood.tech/api/auth/signin";
 
@@ -28,8 +27,15 @@ const login = async (username, password) => {
     }
   })
   .then(response => {
-    return response.json()
-  })
+    if(!response.ok){
+        if(response.status === 403){
+          document.getElementById("errorFlair").textContent = Error;
+        }
+    }
+    loginDiv.style.display = "none"
+    document.getElementById("graphQlMain").style.display = "inline-block"
+    return response.json();
+ })
   .then(data => {
     if(data){
       const jwtToken = data
@@ -41,6 +47,7 @@ const login = async (username, password) => {
   })
   .catch(error => {
     console.error(error)
+    document.getElementById("errorFlair").textContent = Error;
   })
 }
 
@@ -56,19 +63,19 @@ function getUserQuery() {
       auditRatio
     }
   }`).then(data => {
-      console.debug("GraphQL User Query Result:", data);
-      const userData = data.data.user[0]
-      if(document.getElementById("userInfo")) {
-        document.getElementById("userInfo").innerHTML = `
-        <p>Full Name: ${userData.firstName} ${userData.lastName}</p>
-        <p>Gitea Username: ${userData.login}</p>
-        <p>E-mail: ${userData.email}</div>
-        <p>Audit Ratio: ${userData.auditRatio.toFixed(2)}</p>
-        <p>Account Created: ${userData.createdAt}</p>
-        `;
-      }
-      
+    console.debug("GraphQL User Query Result:", data);
+    const userData = data.data.user[0]
+    if(document.getElementById("userInfo")) {
+      document.getElementById("userInfo").innerHTML = `
+      <p>Full Name: ${userData.firstName} ${userData.lastName}</p>
+      <p>Gitea Username: ${userData.login}</p>
+      <p>E-mail: ${userData.email}</div>
+      <p>Audit Ratio: ${userData.auditRatio.toFixed(2)}</p>
+      <p>Account Created: ${userData.createdAt}</p>
+      `;
+    }
     }).catch(error => {
+      document.getElementById("errorFlair").textContent = error.message
       console.error("Error in getQuery:", error);
     });
 }
@@ -89,13 +96,16 @@ function getXPQuery() {
   }
 }`).then(data => {
   console.debug("GraphQL XP Query Result:", data);
-  const xpData = data.data.xp[0]
   if(document.getElementById("xpGraph")){
-    document.getElementById("xpGraph").innerHTML =`
-    <p>${xpData}</p>`
+    const chartData = data.data.xp.map(entry => ({
+      x: new Date(entry.createdAt),
+      y: entry.amount / 1000
+    })).sort((a, b) => a.x - b.x);
+    renderXPChart(chartData);
   }
   }).catch(error => {
     console.error("Error in getQuery:", error);
+    document.getElementById("errorFlair").textContent = error.message;
   });
 }
 
@@ -112,10 +122,22 @@ function getSkillsQuery() {
   }
 }`).then(data => {
   console.debug("GraphQL Skills Query Result:", data);
-  const skillsData = data.data.skills[0]
+
   if(document.getElementById("skillsChart")) {
-    document.getElementById("skillsChart").innerHTML = `
-    <p>${skillsData}</p>`
+    const skillsMap = new Map();
+  
+    data.data.skills.forEach(element => {
+      const skill = element.type.split("_")[1]; 
+      if (!skillsMap.has(skill)) {
+        skillsMap.set(skill, element.amount);
+      } else {
+        skillsMap.set(skill, skillsMap.get(skill) + element.amount);
+      }
+    });
+  
+    const labels = Array.from(skillsMap.keys());
+    const series = Array.from(skillsMap.values());
+    renderSkillsChart(labels, series);
   }
   }).catch(error => {
     console.error("Error in getQuery:", error);
@@ -130,12 +152,9 @@ if (document.getElementById("loginForm")) {
     const password = document.getElementById("loginPassword").value;
     
     try {
-      const token = await login(username, password);
+      login(username, password);
       document.getElementById("loginUsername").value = ""
       document.getElementById("loginPassword").value = ""
-      // console.debug(getToken()) 
-      loginDiv.style.display = "none"
-      document.getElementById("graphQlMain").style.display = "inline-block"
     } catch (error) {
       document.getElementById("errorFlair").textContent = error.message;
     }
@@ -148,4 +167,58 @@ if (document.getElementById("logoutButton")) {
     graphQlMain.style.display = "none"
     loginDiv.style.display = "block"
   });
+}
+
+function renderSkillsChart(labels, series) {
+  const options = {
+    chart: {
+      type: 'pie',
+      width:  400,
+      height: 350,
+    },
+    series: series,
+    labels: labels,
+    title: {
+      align: 'center'
+    },
+    responsive: [{
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 200
+        },
+        legend: {
+          position: 'bottom'
+        }
+      }
+    }]
+  };
+
+  const chart = new ApexCharts(document.querySelector("#skillsChart"), options);
+  chart.render();
+}
+
+function renderXPChart(data) {
+  const options = {
+    chart: {
+      type: 'line',
+      width: 400,
+      height: 350,
+    },
+    series: [{
+      name: 'XP Amount',
+      data: data
+    }],
+    xaxis: {
+      type: 'datetime',
+    },
+    title: {
+      text: 'XP Over Time',
+      align: 'center'
+    }
+  };
+
+  // Initialize and render the chart
+  const chart = new ApexCharts(document.querySelector("#xpGraph"), options);
+  chart.render();
 }
