@@ -1,9 +1,7 @@
 /*
 Color Codes:
-
 MAIN == #background-color: #444444
 AUX == #background: #797979
-
 */
 
 body {
@@ -11,9 +9,6 @@ body {
     margin: 0;
     padding: 0;
     display: flexbox;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     background-color: #444444;
 }
 /* Got a bit lazy and just alligned it do the center like so.
@@ -41,12 +36,49 @@ body {
 }
 
 .graphql-main-container {
-    display: inline-block;
-    border: 3px solid;
-    background-color: #797979;
-    padding: 15px;
+    position: absolute;
+    padding: 10px;
     transform: translate(-50%, -50%);
-    position: fixed;
     left: 50%;
     top: 50%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(123, 123, 123, 0.1);
+    background: #797979;
+    width: 75%;
+    height: 50%;
+}
+
+.skills-box {
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.skills-box {
+    display: inline-grid;
+    position: relative;
+    justify-items: center;
+    padding: 10px;
+}
+
+.user-box {
+    position: relative;
+    display: inline-grid;
+    padding: 10px;
+}
+
+.xp-box {
+    display: inline-grid;
+    position: relative;
+    padding: 10px;
+    justify-items: center;
+}
+
+.extra-section {
+    align-content: center;
+    justify-content: center;
 }

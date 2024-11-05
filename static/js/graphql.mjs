@@ -1,8 +1,6 @@
 import { fetchQuery } from "./queryHelper.js";
-// API Endpoints //
-const kjSignInEndpoint = "https://01.kood.tech/api/auth/signin";
+import { renderSkillsChart, renderXPChart } from "./renderCharts.js";
 
-// Main JS //
 const removeToken = () => localStorage.removeItem("jwt");
 const loginDiv = document.getElementById("loginDiv")
 const saveToken = (token) => {
@@ -19,6 +17,7 @@ export const getToken = () => {
 
 const login = async (username, password) => {
   const credentials = btoa(`${username}:${password}`);
+  const kjSignInEndpoint = "https://01.kood.tech/api/auth/signin";
   return fetch(kjSignInEndpoint, {
     method: "POST",
     headers: {
@@ -35,6 +34,7 @@ const login = async (username, password) => {
     if(response.ok){
       loginDiv.style.display = "none"
       document.getElementById("graphQlMain").style.display = "inline-block"
+      document.getElementById("extras").style.display = "block"
     }
     return response.json();
  })
@@ -69,12 +69,11 @@ function getUserQuery() {
     const userData = data.data.user[0]
     if(document.getElementById("userInfo")) {
       document.getElementById("userInfo").innerHTML = `
-      <p>Full Name: ${userData.firstName} ${userData.lastName}</p>
-      <p>Gitea Username: ${userData.login}</p>
-      <p>E-mail: ${userData.email}</p>
-      <p>Audit Ratio: ${userData.auditRatio.toFixed(2)}</p>
-      <p>Account Created: ${userData.createdAt}</p>
-      `;
+      <div>Full Name: ${userData.firstName} ${userData.lastName}</div>
+      <div>Gitea Username: ${userData.login}</div>
+      <div>E-mail: ${userData.email}</div>
+      <div>Audit Ratio: ${userData.auditRatio.toFixed(2)}</div>
+      <div>Account Created: ${userData.createdAt}</div>`;
     }
     }).catch(error => {
       document.getElementById("errorFlair").textContent = error.message
@@ -168,59 +167,6 @@ if (document.getElementById("logoutButton")) {
     removeToken();
     graphQlMain.style.display = "none"
     loginDiv.style.display = "block"
+    document.getElementById("extras").style.display = "none"
   });
-}
-
-function renderSkillsChart(labels, series) {
-  const options = {
-    chart: {
-      type: 'pie',
-      width:  400,
-      height: 350,
-    },
-    series: series,
-    labels: labels,
-    title: {
-      align: 'center'
-    },
-    responsive: [{
-      breakpoint: 480,
-      options: {
-        chart: {
-          width: 200
-        },
-        legend: {
-          position: 'bottom'
-        }
-      }
-    }]
-  };
-
-  const chart = new ApexCharts(document.querySelector("#skillsChart"), options);
-  chart.render();
-}
-
-function renderXPChart(data) {
-  const options = {
-    chart: {
-      type: 'line',
-      width: 400,
-      height: 350,
-    },
-    series: [{
-      name: 'XP Amount',
-      data: data
-    }],
-    xaxis: {
-      type: 'datetime',
-    },
-    title: {
-      text: 'XP Over Time',
-      align: 'center'
-    }
-  };
-
-  // Initialize and render the chart
-  const chart = new ApexCharts(document.querySelector("#xpGraph"), options);
-  chart.render();
 }

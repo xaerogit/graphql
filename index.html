@@ -22,19 +22,24 @@
         </div>
         <p id="errorFlair" style="color: red;"></p>
     </div>
-
     <div id="graphQlMain" class="graphql-main-container" style="display: none;">
-        <div class="logout-section">
-            <button type="submit" id="logoutButton">Log Out</button>
+        <div class="user-box">
+            <h1>User Info</h1>
+            <div class="user-info" id="userInfo"></div>
         </div>
-        <h1>User Info</h1>
-        <div class="user-info" id="userInfo"></div>
-        <h1>Skills Chart</h1>
-        <div class="skills-chart" id="skillsChart"></div>
-        <h1>XP Graph</h1>
-        <div class="xp-graph" id="xpGraph"></div>
+        <div class="skills-box">
+            <h1>Skills Chart</h1>
+            <div id="skillsChart"></div>
+        </div>
+        <div class="xp-box">
+            <h1>XP Graph</h1>
+            <div id="xpGraph"></div>
+        </div>
+    </div>
+    <div class="extra-section" id="extras" style="display: none;">
+        <button type="submit" class="logout-button" id="logoutButton">Log Out</button>
         <p id="errorFlair" style="color: red;"></p>
     </div>
-    <script type="module" src="static/graphql.mjs"></script>
+    <script type="module" src="static/js/graphql.mjs"></script>
 </body>
 </html>
