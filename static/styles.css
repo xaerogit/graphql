@@ -49,33 +49,25 @@ body {
 }
 
 .skills-box {
-    padding: 10px;
-    display: inline-block;
-    position: relative;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    justify-items: center;
-}
-
-.skills-box {
     display: inline-grid;
     position: relative;
     justify-items: center;
     padding: 10px;
+    height: 300px;
 }
 
 .user-box {
+    height: auto;
     position: relative;
     display: inline-grid;
-    padding: 10px;
+    height: 300px;
 }
 
 .xp-box {
     display: inline-grid;
     position: relative;
-    padding: 10px;
     justify-items: center;
+    height: 300px
 }
 
 .extra-section {
