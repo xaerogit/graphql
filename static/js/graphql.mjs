@@ -33,7 +33,7 @@ const login = async (username, password) => {
     }
     if(response.ok){
       loginDiv.style.display = "none"
-      document.getElementById("graphQlMain").style.display = "inline-block"
+      document.getElementById("graphQlMain").style.display = "block"
       document.getElementById("extras").style.display = "block"
     }
     return response.json();
@@ -67,13 +67,28 @@ function getUserQuery() {
   }`).then(data => {
     console.debug("GraphQL User Query Result:", data);
     const userData = data.data.user[0]
+    const timestamp = userData.createdAt
+    const date = new Date(timestamp)
+    /* Estonian Timezone [Eastern Europe Time]
+       In the Summer it goes to EEST [Eastern Europe Summer Time] */
+    const formattedDate = date.toLocaleString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "EET" 
+    });
+
     if(document.getElementById("userInfo")) {
-      document.getElementById("userInfo").innerHTML = `
-      <div>Full Name: ${userData.firstName} ${userData.lastName}</div>
-      <div>Gitea Username: ${userData.login}</div>
-      <div>E-mail: ${userData.email}</div>
-      <div>Audit Ratio: ${userData.auditRatio.toFixed(2)}</div>
-      <div>Account Created: ${userData.createdAt}</div>`;
+      document.getElementById("userInfo").innerHTML = 
+      `<h2>User Info:</h2>
+      <p>Full Name: ${userData.firstName} ${userData.lastName}</p>
+      <p>Gitea Username: ${userData.login}</p>
+      <p>E-mail: ${userData.email}</p>
+      <p>Audit Ratio: ${userData.auditRatio.toFixed(2)}</p>
+      <p>Account Created: ${formattedDate}</p>`;
     }
     }).catch(error => {
       document.getElementById("errorFlair").textContent = error.message

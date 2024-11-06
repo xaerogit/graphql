@@ -6,20 +6,17 @@ AUX == #background: #797979
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flexbox;
     background-color: #444444;
 }
 /* Got a bit lazy and just alligned it do the center like so.
    Bit excessive but it works.
 */
-.lolololol {
+.login-header {
     text-align: center;
 }
 
 .login-div {  
-    display: flexbox;
+    display: block;
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
@@ -36,38 +33,35 @@ body {
 }
 
 .graphql-main-container {
-    position: absolute;
-    padding: 10px;
+    display: inline-grid;
+    position: fixed;
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    border-radius: 8px;
+    width: 90%;
+    height: 90%;
+    padding: 10px;
+    border-radius: 25px;
     box-shadow: 0 0 10px rgba(123, 123, 123, 0.1);
     background: #797979;
-    width: 75%;
-    height: 50%;
 }
 
-.skills-box {
-    display: inline-grid;
+.user-info {
     position: relative;
-    justify-items: center;
-    padding: 10px;
-    height: 300px;
+    display: inline-block;
 }
-
-.user-box {
-    height: auto;
+.skills-chart {
     position: relative;
-    display: inline-grid;
-    height: 300px;
+    display: inline-block;
+
 }
-
-.xp-box {
-    display: inline-grid;
+.xp-graph {
     position: relative;
-    justify-items: center;
-    height: 300px
+    display: inline-block;
+}
+.extra-section {
+    align-content: center;
+    justify-content: center;
 }
 
 .extra-section {

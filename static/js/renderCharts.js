@@ -2,12 +2,15 @@ export function renderSkillsChart(labels, series) {
   const options = {
     chart: {
       type: 'pie',
-      width:  350,
+      animations: {
+        enabled: false
+      },
       height: 200,
     },
     series: series,
     labels: labels,
     title: {
+      // text: 'Best Skills',
       align: 'center'
     },
   };
@@ -20,18 +23,22 @@ export function renderXPChart(data) {
   const options = {
     chart: {
       type: 'line',
-      width: 500,
       height: 200,
     },
+    toolbar: {
+      show: false
+    },
+    zoom: { enabled: false },
+    selection: { enabled: false },
+    tooltip: { enabled: false },
     series: [{
-      name: 'XP Amount',
       data: data
     }],
     xaxis: {
       type: 'datetime',
     },
     title: {
-      text: 'XP Over Time',
+      // text: 'XP Chart',
       align: 'center'
     }
   };
