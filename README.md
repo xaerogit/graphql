@@ -12,7 +12,7 @@
 * Finally navigate to ``http://localhost:8080``
 
 ## Made by
-- [@mpuusaag](https://01.kood.tech/git/mpuusaag)
+- [@Xaero](https://github.com/xaerogit)
 
 ## Libraries used
 * [ApexCharts](https://apexcharts.com/)
