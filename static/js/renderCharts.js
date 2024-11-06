@@ -5,7 +5,7 @@ export function renderSkillsChart(labels, series) {
       animations: {
         enabled: false
       },
-      height: 200,
+      height: 250,
     },
     series: series,
     labels: labels,

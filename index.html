@@ -2,11 +2,8 @@
 <html lang="en">
 <head>
     <title>GraphQL</title>
-    <!-- FIXME: !!! Add a proper favicon !!! -->
-    <link rel="icon" type="image/x-icon" href="static/images/graphQLico.png"> 
     <link rel="stylesheet" href="static/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <!-- favicon is a placeholder! -->
 </head>
 <body>
     <div id="loginDiv" class="login-div">
@@ -23,6 +20,7 @@
         <p id="errorFlair" style="color: red;"></p>
     </div>
     <div id="graphQlMain" class="graphql-main-container" style="display: none;">
+        <button type="submit" class="logout-button" id="logoutButton">Log Out</button>
         <div class="container-inner-div">
             <h2>User Info:</h2>
             <div class="user-box" id="userInfo">
@@ -34,9 +32,6 @@
             <div class="xp-graph" id="xpGraph">
             </div>
         </div>
-    </div>
-    <div class="extra-section" id="extras" style="display: none;">
-        <button type="submit" class="logout-button" id="logoutButton">Log Out</button>
         <p id="errorFlair" style="color: red;"></p>
     </div>
     <script type="module" src="static/js/graphql.mjs"></script>

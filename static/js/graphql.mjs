@@ -6,12 +6,12 @@ const loginDiv = document.getElementById("loginDiv")
 const saveToken = (token) => {
   if (token) {
     localStorage.setItem("jwt", token);
-    console.debug("Token saved to localStorage:", token); 
+    // console.debug("Token saved to localStorage:", token); 
   }
 }
 export const getToken = () => {
   const token = localStorage.getItem("jwt");
-  console.debug("Retrieved token:", token)
+  // console.debug("Retrieved token:", token)
   return token
 }
 
@@ -34,7 +34,6 @@ const login = async (username, password) => {
     if(response.ok){
       loginDiv.style.display = "none"
       document.getElementById("graphQlMain").style.display = "block"
-      document.getElementById("extras").style.display = "block"
     }
     return response.json();
  })
@@ -65,7 +64,7 @@ function getUserQuery() {
       auditRatio
     }
   }`).then(data => {
-    console.debug("GraphQL User Query Result:", data);
+    // console.debug("GraphQL User Query Result:", data);
     const userData = data.data.user[0]
     const timestamp = userData.createdAt
     const date = new Date(timestamp)
@@ -110,7 +109,7 @@ function getXPQuery() {
     }
   }
 }`).then(data => {
-  console.debug("GraphQL XP Query Result:", data);
+  // console.debug("GraphQL XP Query Result:", data);
   if(document.getElementById("xpGraph")){
     const chartData = data.data.xp.map(entry => ({
       x: new Date(entry.createdAt),
@@ -136,7 +135,7 @@ function getSkillsQuery() {
     amount
   }
 }`).then(data => {
-  console.debug("GraphQL Skills Query Result:", data);
+  // console.debug("GraphQL Skills Query Result:", data);
 
   if(document.getElementById("skillsChart")) {
     const skillsMap = new Map();
@@ -181,6 +180,5 @@ if (document.getElementById("logoutButton")) {
     removeToken();
     graphQlMain.style.display = "none"
     loginDiv.style.display = "block"
-    document.getElementById("extras").style.display = "none"
   });
 }

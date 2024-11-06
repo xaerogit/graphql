@@ -8,9 +8,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #444444;
 }
-/* Got a bit lazy and just alligned it do the center like so.
-   Bit excessive but it works.
-*/
+
 .login-header {
     text-align: center;
 }
@@ -49,23 +47,15 @@ body {
     width: fit-content;
 }
 
-
 .user-info {
-    /* display: inline-block; */
     position: relative;
     width: fit-content;
 }
 .skills-chart {
-    /* display: inline-block; */
     position: relative;
     width: fit-content;
 }
 .xp-graph {
-    /* display: inline-block; */
     position: relative;
     width: fit-content;
-}
-.extra-section {
-    align-content: center;
-    justify-content: center;
 }
