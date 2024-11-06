@@ -29,41 +29,42 @@ body {
     position: relative;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(123, 123, 123, 0.1);
-    width: auto;
+    width: fit-content;
 }
 
 .graphql-main-container {
-    display: inline-grid;
-    position: fixed;
+    display: block;
+    position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-    width: 90%;
-    height: 90%;
-    padding: 10px;
-    border-radius: 25px;
-    box-shadow: 0 0 10px rgba(123, 123, 123, 0.1);
-    background: #797979;
 }
+
+.container-inner-div{
+    background: #797979;
+    padding: 20px;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(123, 123, 123, 0.1);
+    width: fit-content;
+}
+
 
 .user-info {
+    /* display: inline-block; */
     position: relative;
-    display: inline-block;
+    width: fit-content;
 }
 .skills-chart {
+    /* display: inline-block; */
     position: relative;
-    display: inline-block;
-
+    width: fit-content;
 }
 .xp-graph {
+    /* display: inline-block; */
     position: relative;
-    display: inline-block;
+    width: fit-content;
 }
-.extra-section {
-    align-content: center;
-    justify-content: center;
-}
-
 .extra-section {
     align-content: center;
     justify-content: center;

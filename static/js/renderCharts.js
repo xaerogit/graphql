@@ -23,24 +23,31 @@ export function renderXPChart(data) {
   const options = {
     chart: {
       type: 'line',
-      height: 200,
+      height: 250,
+    },
+    stroke: {
+      width: '2',
+      curve: 'smooth',
     },
     toolbar: {
-      show: false
+      enabled: false,
     },
-    zoom: { enabled: false },
-    selection: { enabled: false },
-    tooltip: { enabled: false },
+    tooltip: {
+      enabled: false, 
+    },
     series: [{
       data: data
     }],
     xaxis: {
       type: 'datetime',
     },
-    title: {
-      // text: 'XP Chart',
-      align: 'center'
-    }
+    yaxis: {
+      labels: {
+        formatter: function (value) {
+          return Math.round(value) + " kB";
+        }
+      }
+    },
   };
   const chart = new ApexCharts(document.querySelector("#xpGraph"), options);
   chart.render();

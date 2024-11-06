@@ -83,12 +83,11 @@ function getUserQuery() {
 
     if(document.getElementById("userInfo")) {
       document.getElementById("userInfo").innerHTML = 
-      `<h2>User Info:</h2>
-      <p>Full Name: ${userData.firstName} ${userData.lastName}</p>
-      <p>Gitea Username: ${userData.login}</p>
-      <p>E-mail: ${userData.email}</p>
-      <p>Audit Ratio: ${userData.auditRatio.toFixed(2)}</p>
-      <p>Account Created: ${formattedDate}</p>`;
+      `<div>Full Name: ${userData.firstName} ${userData.lastName}</div>
+      <div>Gitea Username: ${userData.login}</div>
+      <div>E-mail: ${userData.email}</div>
+      <div>Audit Ratio: ${userData.auditRatio.toFixed(2)}</div>
+      <div>Account Created: ${formattedDate}</div>`;
     }
     }).catch(error => {
       document.getElementById("errorFlair").textContent = error.message
