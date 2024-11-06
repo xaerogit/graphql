@@ -2,7 +2,7 @@
 * [Audit Instructions](https://github.com/01-edu/public/tree/master/subjects/graphql/audit)
 
 ## Live Webpage
-* [Graph-Ql]()
+* [Graph-Ql](https://xaerogit.github.io/graphql/)
 
 ## Running from source
 * Clone the repository using git clone ``git clone https://01.kood.tech/git/mpuusaag/graphql.git``
